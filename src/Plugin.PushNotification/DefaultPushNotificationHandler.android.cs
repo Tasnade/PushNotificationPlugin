@@ -148,11 +148,6 @@ namespace Plugin.PushNotification
         {
             System.Diagnostics.Debug.WriteLine($"{DomainTag} - OnReceived");
 
-            if ((parameters.TryGetValue(SilentKey, out var silent) && (silent.ToString() == "true" || silent.ToString() == "1")) || (IsInForeground() && (!(!parameters.ContainsKey(ChannelIdKey) && parameters.TryGetValue(PriorityKey, out var imp) && ($"{imp}" == "high" || $"{imp}" == "max")) || (!parameters.ContainsKey(PriorityKey) && !parameters.ContainsKey(ChannelIdKey) && PushNotificationManager.DefaultNotificationChannelImportance != NotificationImportance.High && PushNotificationManager.DefaultNotificationChannelImportance != NotificationImportance.Max))))
-            {
-                return;
-            }
-
             Context context = Application.Context;
 
             var notifyId = 0;
